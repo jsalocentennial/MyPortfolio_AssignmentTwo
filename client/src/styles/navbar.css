@@ -1,0 +1,13 @@
+.navbar {
+    border-bottom: 3px solid #8b7355;
+    padding: 15px;
+}
+
+.navbar a {
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: white;
+}

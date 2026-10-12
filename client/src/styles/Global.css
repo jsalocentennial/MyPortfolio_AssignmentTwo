@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    background-color: #1a1a1a;
+    color: #e8e0c8;
+    font-family: monospace;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 0;
+}
+
+a {
+    color: #d4af37;
+}

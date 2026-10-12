@@ -1,0 +1,53 @@
+.about-container {
+    max-width: 1000px;
+    margin: 28px auto;
+    padding: 24px;
+    border: 2px solid #8b7355;
+    background-color: #242424;
+    color: #e8e0c8;
+    box-shadow: 6px 6px 0 #0d0d0d;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+
+.profile-photo {
+    width: 100%;
+    height: auto;
+    border: 2px solid #8b7355;
+    box-shadow: 4px 4px 0 #0d0d0d;
+}
+
+.about-text {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.about-text h2 {
+    color: #d4af37;
+}
+
+.about-text p,
+.about-text ul {
+    line-height: 1.6;
+}
+
+.about-text ul {
+    display: inline-block;
+    text-align: left;
+
+}
+
+.about-text a {
+    text-align: center;
+}
+
+@media (max-width: 700px) {
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+}

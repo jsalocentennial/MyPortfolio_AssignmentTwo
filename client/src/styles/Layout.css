@@ -1,0 +1,50 @@
+.layout {
+    background-color: #252525;
+    border-bottom: 4px solid #8b7355;
+    padding: 20px;
+    box-shadow: 0 6px 0 #111;
+}
+
+.layout_content {
+    display: flex;
+    align-items: center;
+}
+
+.navigation {
+    flex-grow: 1;
+}
+
+.logo_photo img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.site-title {
+    color: #e8d5a3;
+    font-family: monospace;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.navbar {
+    text-align: center;
+    font-family: monospace;
+}
+
+.navbar a {
+    color: #d4af37;
+    text-decoration: none;
+    padding: 8px 12px;
+}
+
+.navbar a:hover {
+    color: white;
+    background-color: #3a3a3a;
+}
+
+.navbar a:hover::before {
+    content: "> ";
+}

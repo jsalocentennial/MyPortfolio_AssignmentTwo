@@ -1,0 +1,29 @@
+.education {
+    padding: 20px;
+    margin: 20px;
+}
+
+.education table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    margin: 20px 0 20px;
+}
+
+.education th {
+    background-color: #302e2e;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.education td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.certification_table {
+    margin-top: 20px;
+}
