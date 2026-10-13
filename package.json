@@ -19,6 +19,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "body-parser": "^2.2.0",
     "compression": "^1.8.0",
     "cookie-parser": "^1.4.7",
@@ -26,6 +27,6 @@
     "express": "^5.1.0",
     "global": "^4.4.0",
     "helmet": "^8.1.0",
-    "mongoose": "^9.11.2"           
+    "mongoose": "^9.11.2"
   }
 }

@@ -1,4 +1,5 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose';               //Slide 22 - 37 schema and model creation for user model
+import bcrypt from 'bcrypt';                   //From video of October 7th class
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -18,38 +19,22 @@ const UserSchema = new mongoose.Schema({
         default: Date.now
     },
     updated: Date,
-    hashed_password: {
+    password: {
         type: String,
         required: 'Password is required'
-    },
-    salt: String
+    }
+    
 });
 
-UserSchema
-    .virtual('password')
-    .set(function(password) {
-        this._password = password;
-        this.salt = this.makeSalt();
-        this.hashed_password = this.encryptPassword(password);
-    })
-    .get(function() {
-        return this._password;
-    });
-
-UserSchema.path('hashed_password').validate(function(v) {
-    if (this._password && this._password.length < 6) {
-        this.invalidate(
-            'password',
-            'Password must be at least 6 characters.'
-        );
+UserSchema.pre("save", async function(){                          //This comes from October 7th demonstration
+    if(this.isModified("password") || this.isNew){
+        this.password = await bcrypt.hash(this.password, 10);
     }
+}
+)
 
-    if (this.isNew && !this._password) {
-        this.invalidate(
-            'password',
-            'Password is required'
-        );
-    }
-}, null);
+UserSchema.methods.comparePassword = async function(password){
+    return await bcrypt.compare(password, this.password);
+} 
 
 export default mongoose.model('User', UserSchema);
