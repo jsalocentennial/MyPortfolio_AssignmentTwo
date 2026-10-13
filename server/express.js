@@ -5,6 +5,7 @@ import compress from "compression";
 import cors from "cors";
 import helmet from "helmet";
 
+import projectRouter from "./routes/project-routes.js";  //Test import for project routes
 import userRouter from "./routes/user-routes.js";  //Test import for user routes
 
 const app = express();
@@ -16,5 +17,6 @@ app.use(helmet());
 app.use(cors());
 
 app.use("/api/users", userRouter);  //Test route for user routes
+app.use("/api/projects", projectRouter);  //Test route for project routes
 
 export default app;

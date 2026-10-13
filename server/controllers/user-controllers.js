@@ -26,13 +26,7 @@ export const getUserById = async (req, res) => {
 
 export const createUser = async (req, res) => {
     try {
-        console.log("=== MERN SKELETON CREATE USER ===");
-        console.log("REQUEST BODY:", req.body);   //Test to see if the request body is being received correctly
-
         const newUser = new UserModel(req.body);
-
-        console.log("NEW USER:", newUser);        //Second test to see if the new user is being created correctly
-
         const savedUser = await newUser.save();
         const safeUser = {                                 //Create a variable to hold the user data without the password
             _id: savedUser._id,
@@ -43,7 +37,6 @@ export const createUser = async (req, res) => {
         }
         res.status(201).json( safeUser );                   //Call the safe variable
     } catch (error) {
-        console.error("CREATE USER ERROR:", error);             //DELETE AFTER DEBUGGIN
         res.status(500).json({ message: error.message });
     }
 }
