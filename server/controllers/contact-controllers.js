@@ -1,4 +1,4 @@
-import contactModel from "../models/contact-model.js";
+import contactModel from "../models/contact-models.js";
 
 // CRUD - Create, Read, Update, Delete
 

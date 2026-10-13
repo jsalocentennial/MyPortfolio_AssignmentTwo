@@ -1,4 +1,4 @@
-import qualificationModel from "../models/qualification-model.js";
+import qualificationModel from "../models/qualification-models.js";
 
 // CRUD - Create, Read, Update, Delete
 export const getAllQualifications = async (req, res) => {

@@ -1,19 +1,19 @@
 import express from "express";
-import { getAllProjects, getProjectById, createProject, updateProject, deleteProject } from "../controllers/project-controllers.js";
+import { getAllQualifications, getQualificationById, createQualification, updateQualification, deleteQualification } from "../controllers/qualification-controllers.js";
 
 const router = express.Router();
 
 //Read
-router.get("/", getAllProjects);
-router.get("/:id", getProjectById);
+router.get("/", getAllQualifications);
+router.get("/:id", getQualificationById);
 
 //Create
-router.post("/", createProject);
+router.post("/", createQualification);
 
 //Update
-router.put("/:id", updateProject);
+router.put("/:id", updateQualification);
 
 //Delete
-router.delete("/:id", deleteProject);
+router.delete("/:id", deleteQualification);
 
 export default router;
