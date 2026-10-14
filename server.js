@@ -19,6 +19,8 @@
 import config from './config/config.js'
 import app from './server/express.js'
 import mongoose from 'mongoose'
+import authMiddleware from './server/middlewares/auth.js'
+
 mongoose.Promise = global.Promise
 mongoose.connect(config.mongoUri, {
   //useNewUrlParser: true,

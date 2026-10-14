@@ -1,4 +1,5 @@
 import UserModel from '../models/user_models.js'   //From October 7th lecture
+import generateToken from '../utils/jwt.js'  //From October 14th lecture
 
 // CRUD - Create, Read, Update, Delete
 
@@ -28,6 +29,9 @@ export const createUser = async (req, res) => {
     try {
         const newUser = new UserModel(req.body);
         const savedUser = await newUser.save();
+
+        const token = generateToken(savedUser); // Generate a JWT token for the newly created user (Oct 14th class)
+
         const safeUser = {                                 //Create a variable to hold the user data without the password
             _id: savedUser._id,
             name: savedUser.name,
@@ -35,7 +39,7 @@ export const createUser = async (req, res) => {
             created: savedUser.created,
             updated: savedUser.updated
         }
-        res.status(201).json( safeUser );                   //Call the safe variable
+        res.status(201).json( { user: safeUser, token: token } );                   //Call the safe variable and token
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
@@ -92,7 +96,9 @@ export const loginUser = async (req, res) => {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
 
-        res.status(200).json({message: "Login Successful"})
+        const token = generateToken(user); // Generate a JWT token 
+
+        res.status(200).json({message: "Login Successful", token}); // Send token 
     } catch (error) {
         res.status(500).json({message: error.message}) 
     }
