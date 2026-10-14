@@ -13,7 +13,9 @@ export const getAllUsers = async (req, res) => {
     }
 }
 
-export const getUserById = async (req, res) => {
+
+export const getUserById = async (req, res) => {    
+    
     try {
         const user = await UserModel.findById(req.params.id).select("name email created updated");  //Don't return password
         if (!user) {
@@ -101,5 +103,14 @@ export const loginUser = async (req, res) => {
         res.status(200).json({message: "Login Successful", token}); // Send token 
     } catch (error) {
         res.status(500).json({message: error.message}) 
+    }
+}
+
+export const logoutUser = async (req, res) => {
+    try {
+        // Invalidate the token on the client side by instructing the client to remove it. This isn't actually removing the token
+        res.status(200).json({ message: "Logout Successful Token invalidated" });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
     }
 }
