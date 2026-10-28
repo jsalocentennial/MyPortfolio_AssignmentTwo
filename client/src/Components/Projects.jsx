@@ -10,8 +10,9 @@ const Projects = () => {
                     <img src="/files/GLIP_Presentation.jpg" alt="GLIP Presentation" />
                     <p><b>Details:</b> I acted as the team lead for team ConstructMatrix. This involved
                         meeting with mentors, discussing application requirements, conveying
-                         technical requirements to the tech lead and developing technical 
-                         documents towards the creation of our application.
+                        technical requirements to the tech lead and developing technical 
+                        documents towards the creation of our application as well as the creation and 
+                        presentation of our final pitch in front of a panel of judges and audience of peers.
                     </p>
                     <p><b>Outcome:</b> Finalist at GLIP Presentation Day 2026</p>
             </div>
@@ -22,7 +23,8 @@ const Projects = () => {
                     travelling through space. The player must decide what action to take
                     in order to survive the journey. The game was built using C# and is
                     a console application. The game is still in development and will be
-                    updated as I learn more about programming.
+                    updated as I learn more about programming. I acted as the sole software developer 
+                    for this project. 
                 </p>
                 <p><b>Outcome:</b> Project still in development</p>
             </div>
@@ -30,8 +32,8 @@ const Projects = () => {
                 <h2>Project 3: WimTach Hackathon</h2>
                 <img src="/files/WIMTACH_Hackathon.png" alt="WIMTACH Hackathon certificate" />
                 <p><b>Details:</b>I participated in the WimTach Hackathon, where I worked with a team to develop a innovative solution
-                     for a food disperal vending machine. The experience allowed me to enhance my problem-solving skills 
-                     and collaborate effectively with other developers.
+                    for a food disperal vending machine. The experience allowed me to enhance my problem-solving skills 
+                    and collaborate effectively with other developers.
                 </p>
                 <p><b>Outcome:</b> Participant and recognition certificate awarded.</p>
             </div>
