@@ -7,6 +7,7 @@ import Projects from './Components/Projects';
 import Education from './Components/Education';
 import Services from './Components/Services';
 import Contact from './Components/Contact';
+import Login from './Components/Login';
 
 const MainRouter = () => {
     return (
@@ -19,6 +20,7 @@ const MainRouter = () => {
             <Route path="/education" element={<Education />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/login" element={<Login />} />
         </Routes>
     </div> 
     )
