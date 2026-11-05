@@ -19,8 +19,8 @@ app.use(compress());
 app.use(helmet());
 app.use(cors());
 app.use("/api/users", userRouter);  //Test route for user routes
-app.use("/api/projects", authMiddleware, projectRouter);  //Test route for project routes
-app.use("/api/qualifications", authMiddleware, qualificationRouter);  //Test route for qualification routes
-app.use("/api/contacts", authMiddleware, contactRouter);  //Test route for contact routes
+app.use("/api/projects", projectRouter);  //Test route for project routes            AUTHMIDDLEWARE moved to individual routes
+app.use("/api/qualifications", qualificationRouter);  //Test route for qualification routes
+app.use("/api/contacts", contactRouter);  //Test route for contact routes
 
 export default app;

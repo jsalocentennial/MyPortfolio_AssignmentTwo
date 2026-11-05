@@ -10,7 +10,7 @@ import Contact from './Components/Contact';
 
 const MainRouter = () => {
     return (
-     <div>
+    <div>
         <Layout />
         <Routes>
             <Route path="/" element={<Home />} />
@@ -20,7 +20,7 @@ const MainRouter = () => {
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
         </Routes>
-     </div> 
+    </div> 
     )
 }
 

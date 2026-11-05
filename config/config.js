@@ -1,6 +1,6 @@
 //Slide 10 Setting up Mongoose PowerPoint
 import dotenv from 'dotenv';
-dotenv.config();
+dotenv.config({ path: './server/.env' });                     // Load environment variables from .env file located in server folder
 
 const config = {
     env: process.env.NODE_ENV || 'development',
@@ -8,6 +8,7 @@ const config = {
     jwtSecret: process.env.JWT_SECRET,
     mongoUri: process.env.MONGO_URI
 }
+
 
 export default config;
 

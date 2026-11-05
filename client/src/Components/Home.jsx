@@ -11,8 +11,8 @@ const Home = () => {
             </p>
             <h2>Mission Statement</h2>
                 <p>My intention is to learn how to program and build software to create the projects I want to create.
-                     I am not programming to get a job, but to follow my own interests. Each project I complete I see 
-                     as a tool to learn more and become a more competent programmer. 
+                    I am not programming to get a job, but to follow my own interests. Each project I complete I see 
+                    as a tool to learn more and become a more competent programmer. 
                 </p>
             <Link to="/about">About Me</Link>
         </div>

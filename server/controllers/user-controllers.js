@@ -29,7 +29,8 @@ export const getUserById = async (req, res) => {
 
 export const createUser = async (req, res) => {
     try {
-        const newUser = new UserModel(req.body);
+        const { name, email, password } = req.body;                           //Only accept name, email, and password from the request body
+        const newUser = new UserModel({ name, email, password });
         const savedUser = await newUser.save();
 
         const token = generateToken(savedUser); // Generate a JWT token for the newly created user (Oct 14th class)
@@ -38,6 +39,7 @@ export const createUser = async (req, res) => {
             _id: savedUser._id,
             name: savedUser.name,
             email: savedUser.email,
+            role: savedUser.role,  //Include the role in the safe user object
             created: savedUser.created,
             updated: savedUser.updated
         }
