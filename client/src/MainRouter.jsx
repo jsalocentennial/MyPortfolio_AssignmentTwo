@@ -53,7 +53,7 @@ const isAdmin = () => {                                                   //Chec
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/projects" element={<Projects isAdmin={isAdmin} token={token} />} />
-            <Route path="/education" element={<Education />} />
+            <Route path="/education" element={<Education isAdmin={isAdmin} token={token} />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login onAuth={handleAuth} />} />

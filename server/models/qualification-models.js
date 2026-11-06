@@ -6,14 +6,20 @@ const qualificationSchema = new mongoose.Schema({
         trim: true,
         required: 'Name of qualification is required'
     },
-    completionDate: {
-        type: Date,
-        required: 'Completion date is required'
-    },
-    description: {
+    type: {
         type: String,
-        trim: true
+        enum: ['Education', 'Certification', 'License'],
+        required: 'Type of qualification is required'
+    },
+    institution: {
+        type: String,
+        trim: true,
+        required: 'Institution is required'
+    },
+    completionDate: {
+        type: Date
     }
+    
 });
 
 export default mongoose.model("Qualification", qualificationSchema);

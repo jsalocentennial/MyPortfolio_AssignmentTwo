@@ -34,7 +34,7 @@ export const createQualification = async (req, res) => {
 
 export const updateQualification = async (req, res) => {
     try {
-        const updatedQualification = await qualificationModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        const updatedQualification = await qualificationModel.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
         if (!updatedQualification) {
             return res.status(404).json({ message: "Qualification not found" });
         }   
