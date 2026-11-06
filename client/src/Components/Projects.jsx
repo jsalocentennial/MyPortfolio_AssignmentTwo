@@ -8,6 +8,7 @@ const Projects = ({ isAdmin, token }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [showForm, setShowForm] = useState(false);
+    const [editingProject, setEditingProject] = useState(null);                     //Holds variables for editing a project
 
     const [form, setForm] = useState({  // Form variables for creating new project
         title: '',
@@ -50,33 +51,69 @@ const Projects = ({ isAdmin, token }) => {
         });
     };
 
-    const handleSubmit = async (event) => {
+    const handleEdit = (project) => {                            //Edit project 
+        setEditingProject(project._id);
+        setForm({
+            title: project.title,
+            description: project.description || '',
+            completionDate: project.completionDate.slice(0, 10), // Format date for input field to YYYY-MM-DD
+            image_link: project.image_link || ''
+        });
+        setShowForm(true);
+    }
+
+    const handleToggleForm = () => {                             //Toggle form for creating new project
+        setShowForm(!showForm);
+        setEditingProject(null);
+        setForm({
+            title: '',
+            description: '',
+            completionDate: '',
+            image_link: ''
+        });
+    };
+
+    const handleSubmit = async (event) => {                      //Submitting the form to create a new project
         event.preventDefault();
         setError('');
 
         try {
-            const response = await fetch('/api/projects', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}` // Include the token in the request headers
-                },
-                body: JSON.stringify(form)
-            });
+            const response = await fetch(
+                editingProject ? `/api/projects/${editingProject}` : '/api/projects',        //Changes route depending on editing or creating
+                {
+                    method: editingProject ? 'PUT' : 'POST',    //Allows put for using and post for creating
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(form)
+                }
+            );
 
             const data = await response.json();
 
             if (!response.ok) {
-                throw new Error(data.message || 'Failed to create project');
+                throw new Error(data.message || 'Failed to create project');    //Failed to create
             }
 
-            setProjects((prevProjects) => [...prevProjects, data]);
+            if (editingProject) {                                               //Editing
+                setProjects((prevProjects) =>
+                    prevProjects.map((project) =>
+                        project._id === editingProject ? data : project
+                    )
+                );
+            } else {
+
+                setProjects((prevProjects) => [...prevProjects, data]);
+            }
             setForm({
                 title: '',
                 description: '',
                 completionDate: '',
                 image_link: ''
             });
+
+            setEditingProject(null);
             setShowForm(false);
 
         } catch (error) {
@@ -84,7 +121,35 @@ const Projects = ({ isAdmin, token }) => {
         }
     };
 
-    return (
+    const handleDelete = async (projectId) => {                       //Delete project
+        const confirmed = window.confirm('Are you sure you want to delete this project?');
+        if (!confirmed) {
+            return;
+        }
+        setError('');
+
+        try {
+            const response = await fetch(`/api/projects/${projectId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+        if (!response.ok) {
+            const data = await response.json();
+            throw new Error(data.message || 'Failed to delete project');
+        }
+
+        setProjects((prevProjects) =>
+            prevProjects.filter((project) => project._id !== projectId)
+        );
+
+    } catch (error) {
+        setError(error.message);
+    }
+    };
+
+    return (                                                                 //The project container details how the projects are displayed
         <div className="projects-container">
             <h1>Projects</h1>
 
@@ -108,50 +173,19 @@ const Projects = ({ isAdmin, token }) => {
                     {project.image_link && (
                         <img src={project.image_link} alt={project.title} />
                     )}
+                    {isAdmin() && (    
+                        <div className="project-buttons">                               
+                            <button onClick={() => handleEdit(project)}>Edit</button>
+                            <button onClick={() => handleDelete(project._id)}>Delete</button>
+                        </div>
+                    )}
+                    
                 </div>
-            ))}
+            ))} 
 
-            <div className="project_one">
-                <h2>Project 1: GLIP Hackathon</h2>
-                <img src="/files/GLIP_Presentation.jpg" alt="GLIP Presentation" />
-                <p>
-                    <b>Details:</b> I acted as the team lead for team ConstructMatrix. This involved
-                    meeting with mentors, discussing application requirements, conveying
-                    technical requirements to the tech lead and developing technical
-                    documents towards the creation of our application as well as the creation and
-                    presentation of our final pitch in front of a panel of judges and audience of peers.
-                </p>
-                <p><b>Outcome:</b> Finalist at GLIP Presentation Day 2026</p>
-            </div>
-
-            <div className="project_two">
-                <h2>Project 2: Space Convoy Game</h2>
-                <img src="/files/Space_Convoy.png" alt="Space Convoy Game" />
-                <p>
-                    <b>Details:</b> Space convoy is a single player, terminal based game set in a ship
-                    travelling through space. The player must decide what action to take
-                    in order to survive the journey. The game was built using C# and is
-                    a console application. The game is still in development and will be
-                    updated as I learn more about programming. I acted as the sole software developer
-                    for this project.
-                </p>
-                <p><b>Outcome:</b> Project still in development</p>
-            </div>
-
-            <div className="project_three">
-                <h2>Project 3: WimTach Hackathon</h2>
-                <img src="/files/WIMTACH_Hackathon.png" alt="WIMTACH Hackathon certificate" />
-                <p>
-                    <b>Details:</b> I participated in the WimTach Hackathon, where I worked with a team to develop a innovative solution
-                    for a food disperal vending machine. The experience allowed me to enhance my problem-solving skills
-                    and collaborate effectively with other developers.
-                </p>
-                <p><b>Outcome:</b> Participant and recognition certificate awarded.</p>
-            </div>
-
-            <div className="add-project-button">
+            <div className="add-project-button">                                      
                 {isAdmin() && (
-                    <button onClick={() => setShowForm(!showForm)}>
+                    <button onClick={() => handleToggleForm()}>
                         {showForm ? 'Cancel' : 'Add Project'}
                     </button>
                 )}
@@ -159,7 +193,7 @@ const Projects = ({ isAdmin, token }) => {
 
             {isAdmin() && showForm && (
                 <form className="project-form" onSubmit={handleSubmit}>
-                    <h2>Create New Project</h2>
+                    <h2>{editingProject ? 'Edit Project' : 'Create New Project'}</h2>          
 
                     <label htmlFor="title">Project Title</label>
                     <input
@@ -200,7 +234,9 @@ const Projects = ({ isAdmin, token }) => {
                         placeholder="/files/example.jpg"
                     />
 
-                    <button type="submit">Save Project</button>
+                    <button type="submit">                          
+                        {editingProject ? 'Update Project (Not Connected Yet)' : 'Save Project'}
+                    </button>
                 </form>
             )}
         </div>
