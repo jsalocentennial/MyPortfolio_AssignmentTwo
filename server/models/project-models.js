@@ -13,7 +13,11 @@ const projectSchema = new mongoose.Schema( {
     description: {
         type: String,
         trim: true
-    }
+    },
+    image_link: {
+        type: String,
+        trim: true
+    },
 }
 );
 

@@ -33,7 +33,7 @@ const Login = ({ onAuth }) => {
                 throw new Error(data.message || 'Failed to login')
             }
 
-            // onAuth(data.token)
+            onAuth(data.token)
             // navigate('/projects')
 
             setSuccess('Login successful')
