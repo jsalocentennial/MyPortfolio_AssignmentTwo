@@ -1,29 +1,134 @@
+
 .education {
-    padding: 20px;
-    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px auto;
+    padding: 0 20px 40px;
 }
 
-.education table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid #ddd;
-    margin: 20px 0 20px;
-}
-
-.education th {
-    background-color: #302e2e;
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
-    text-transform: uppercase;
+.education h1 {
+    color: #e8d5a3;
     text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
 }
 
-.education td {
-    padding: 10px;
-    border: 1px solid #ddd;
+/* Qualification Cards */
+
+.qualification-card {
+    width: 100%;
+    max-width: 900px;
+    box-sizing: border-box;
+    margin: 20px auto;
+    padding: 24px;
+    background-color: #242424;
+    border: 2px solid #8b7355;
+    box-shadow: 6px 6px 0 #0d0d0d;
 }
 
-.certification_table {
+.qualification-card h2 {
+    color: #e8d5a3;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.qualification-card p {
+    line-height: 1.6;
+}
+
+/* Buttons */
+
+.qualification-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
     margin-top: 20px;
+}
+
+.education button {
+    padding: 10px 20px;
+    background-color: #3a3a3a;
+    color: #e8e0c8;
+    border: 1px solid #8b7355;
+    font-family: monospace;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.education button:hover:not(:disabled) {
+    background-color: #8b7355;
+    color: #ffffff;
+}
+
+.education button:focus-visible {
+    outline: 2px solid #d4af37;
+    outline-offset: 2px;
+}
+
+.education > button {
+    margin: 20px auto;
+}
+
+/* Create / Edit Form */
+
+.qualification-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 600px;
+    box-sizing: border-box;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #242424;
+    border: 2px solid #8b7355;
+    box-shadow: 6px 6px 0 #0d0d0d;
+}
+
+.qualification-form h2 {
+    color: #e8d5a3;
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.qualification-form label {
+    color: #d4af37;
+    font-weight: bold;
+}
+
+.qualification-form input,
+.qualification-form select {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px;
+    background-color: #1a1a1a;
+    color: #e8e0c8;
+    border: 1px solid #8b7355;
+    font-family: monospace;
+    font-size: 14px;
+}
+
+.qualification-form input:focus,
+.qualification-form select:focus {
+    outline: 2px solid #d4af37;
+    outline-offset: 2px;
+}
+
+.qualification-form button {
+    margin-top: 12px;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    .qualification-card,
+    .qualification-form {
+        padding: 20px;
+    }
+
+    .qualification-actions {
+        flex-wrap: wrap;
+    }
 }

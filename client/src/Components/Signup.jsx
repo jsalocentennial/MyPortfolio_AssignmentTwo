@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import '../styles/Signup.css';
 
 const Signup = () => {
     const [form, setForm] = useState({
@@ -94,8 +95,8 @@ const Signup = () => {
                     required
                 />
 
-                {error && <p>{error}</p>}
-                {success && <p>{success}</p>}
+                {error && <p className="error-message">{error}</p>}
+                {success && <p className="success-message">{success}</p>}
 
                 <button type="submit" disabled={saving}>
                     {saving ? 'Please wait...' : 'Create Account'}

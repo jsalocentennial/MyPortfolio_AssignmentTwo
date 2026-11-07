@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import '../styles/Login.css';
 
 const Login = ({ onAuth }) => {
     const [form, setForm] = useState({ email: '', password: '' })
@@ -14,8 +15,8 @@ const Login = ({ onAuth }) => {
         setForm({ ...form, [name]: value })
     }
 
-    const handleSubmit = async (event) => {
-        event.preventDefault()
+    const handleSubmit = async (event) => {                       //Triggered when form is submitted
+        event.preventDefault()                                    //Basic form related functions
         setSaving(true)
         setError('')
         setSuccess('')
@@ -25,16 +26,14 @@ const Login = ({ onAuth }) => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(form),
-            })
-
+            });
             const data = await response.json()
 
             if (!response.ok) {
                 throw new Error(data.message || 'Failed to login')
             }
 
-            onAuth(data.token)
-            // navigate('/projects')
+            onAuth(data.token)                                      //Passing the token to the mainrouter login
 
             setSuccess('Login successful')
 
@@ -71,8 +70,8 @@ const Login = ({ onAuth }) => {
                     required
                 />
 
-                {error && <p>{error}</p>}
-                {success && <p>{success}</p>}
+                {error && <p className="error-message">{error}</p>}
+                {success && <p className="success-message">{success}</p>}
 
                 <button type="submit" disabled={saving}>
                     {saving ? 'Please wait...' : 'Login'}

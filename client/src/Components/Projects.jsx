@@ -154,7 +154,7 @@ const Projects = ({ isAdmin, token }) => {
             <h1>Projects</h1>
 
             {loading && <p>Loading projects...</p>}
-            {error && <p>Error: {error}</p>}
+            {error && <p className="project-error" role="alert">Error: {error}</p>}
 
             {projects.map((project) => (
                 <div className="project-card" key={project._id}>
@@ -176,7 +176,13 @@ const Projects = ({ isAdmin, token }) => {
                     {isAdmin() && (    
                         <div className="project-buttons">                               
                             <button onClick={() => handleEdit(project)}>Edit</button>
-                            <button onClick={() => handleDelete(project._id)}>Delete</button>
+                            <button
+                                type="button"
+                                className="delete-button"
+                                onClick={() => handleDelete(project._id)}
+                            >
+                                Delete
+                            </button>
                         </div>
                     )}
                     
@@ -234,8 +240,8 @@ const Projects = ({ isAdmin, token }) => {
                         placeholder="/files/example.jpg"
                     />
 
-                    <button type="submit">                          
-                        {editingProject ? 'Update Project (Not Connected Yet)' : 'Save Project'}
+                    <button type="submit">
+                        {editingProject ? 'Update Project' : 'Save Project'}
                     </button>
                 </form>
             )}
