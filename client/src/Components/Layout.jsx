@@ -20,7 +20,11 @@ const Layout = ({ token, onLogout }) => {
                         <Link to="/contact">Contact</Link> |
                         {/* If user logged in, show logout button */}
                         {token ? (
-                            <button type="button" onClick={onLogout}>           
+                            <button
+                                type="button"
+                                className="nav-logout"
+                                onClick={onLogout}
+                            >
                                 Logout
                             </button>
                         ) : (

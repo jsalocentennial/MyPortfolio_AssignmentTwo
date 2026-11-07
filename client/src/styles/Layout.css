@@ -34,15 +34,27 @@
     font-family: monospace;
 }
 
-.navbar a {
+.navbar a,
+.navbar .nav-logout {
     color: #d4af37;
     text-decoration: none;
     padding: 8px 12px;
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
 }
 
-.navbar a:hover {
+.navbar a:hover,
+.navbar .nav-logout:hover {
     color: white;
     background-color: #3a3a3a;
+}
+
+.navbar a:hover::before,
+.navbar .nav-logout:hover::before {
+    content: "> ";
 }
 
 .navbar a:hover::before {

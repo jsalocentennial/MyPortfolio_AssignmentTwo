@@ -8,6 +8,7 @@ import Services from './Components/Services';
 import Contact from './Components/Contact';
 import Login from './Components/Login';
 import { useState } from 'react';
+import Signup from './Components/Signup';
 
 
 const MainRouter = () => {
@@ -57,6 +58,7 @@ const isAdmin = () => {                                                   //Chec
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact isAdmin={isAdmin} token={token} />} />
             <Route path="/login" element={<Login onAuth={handleAuth} />} />
+            <Route path="/signup" element={<Signup />} />
         </Routes>
     </div> 
     )

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = ({ onAuth }) => {
     const [form, setForm] = useState({ email: '', password: '' })
@@ -78,6 +78,9 @@ const Login = ({ onAuth }) => {
                     {saving ? 'Please wait...' : 'Login'}
                 </button>
             </form>
+            <p>
+                Don't have an account? <Link to="/signup">Sign up here</Link>
+            </p>
         </div>
     )
 }
