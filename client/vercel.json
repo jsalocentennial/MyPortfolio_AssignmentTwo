@@ -1,0 +1,12 @@
+{
+    "rewrites": [
+    {
+        "source": "/api/:path*",
+        "destination": "https://myportfolio-assignmenttwo.onrender.com/api/:path*"
+    },
+    {
+        "source": "/(.*)",
+        "destination": "/index.html"
+    }
+    ]
+}
