@@ -7,7 +7,7 @@ const Layout = ({ token, onLogout }) => {
             <h1 className="site-title">Portfolio</h1>
             <div className="layout_content">
                 <div className="logo_photo">
-                    <img src="../files/Logo_CyberPunk.png" alt="Logo" />
+                    <img src="../files/Logo_CyberPunk.webp" alt="Logo" />
                 </div>
 
                 <div className="navigation">
