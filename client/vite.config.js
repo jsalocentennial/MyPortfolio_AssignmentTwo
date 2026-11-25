@@ -13,4 +13,8 @@ export default defineConfig({
       },
     },
   },
+  test: {                                                  //Seperate test configuration for vitest
+  include: ['src/**/*.unit.test.{js,jsx}'],
+  environment: 'jsdom',
+},
 })
